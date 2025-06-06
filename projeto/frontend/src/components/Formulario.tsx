@@ -9,6 +9,7 @@ interface FormularioProps {
 }
 
 export default function Formulario(props: FormularioProps) {
+    const {salvarProduto, obterPorCodigo} = useProdutos();
     const { voltarInicio } = useNavegar();
     const codigo = props.codigo ?? "";
     const [nome, setNome] = useState("");
@@ -17,6 +18,13 @@ export default function Formulario(props: FormularioProps) {
     useEffect(() => {
         (async () => {
             if (props.codigo) {
+                const produto = await obterPorCodigo(props.codigo);
+                if (produto) {
+                    setNome(produto.nome);
+                    setPreco(produto.preco);
+                } else {
+                    voltarInicio();
+                }
             }
         })();
     }, []);
@@ -31,6 +39,7 @@ export default function Formulario(props: FormularioProps) {
                     cor="blue"
                     className="mr-2"
                     onClick={() => {
+                        salvarProduto(nome, +preco, codigo )
                         voltarInicio();
                     }}
                 >

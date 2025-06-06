@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import useProdutos from "../hooks/useProdutos";
 
 export default function Tabela() {
-    const produtos = [
-        { nome: "Apagador", codigo: "ab1", preco: 1.99 },
-        { nome: "Garfo", codigo: "ab22", preco: 4.99 },
-        { nome: "Colher", codigo: "ab3", preco: 4.99 },
-    ];
+    const {produtos, excluirProduto} = useProdutos();
+
     function renderizarCabecalho() {
         return (
             <tr>
@@ -46,7 +43,7 @@ export default function Tabela() {
                 </button>
 
                 <button
-                    onClick={() => {}}
+                    onClick={() => {excluirProduto(codigo)}}
                     className={`
                         flex justify-center items-center
                         text-red-500 rounded-full p-2 m-1
