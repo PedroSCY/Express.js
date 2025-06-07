@@ -5,7 +5,14 @@ meta {
 }
 
 put {
-  url: http://localhost:4000/produtos
-  body: none
+  url: http://localhost:4000/produtos/21ba6af9-6720-4bed-b49d-65650037f91f
+  body: json
   auth: none
+}
+
+body:json {
+  {
+      "nome": "Alterado",
+      "preco": 200
+    }
 }
